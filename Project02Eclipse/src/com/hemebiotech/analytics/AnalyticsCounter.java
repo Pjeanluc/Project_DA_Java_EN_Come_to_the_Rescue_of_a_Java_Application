@@ -1,8 +1,8 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.FileWriter;
+import java.util.List;
 
 public class AnalyticsCounter {
 	private static int headacheCount = 0;	// initialize to 0
@@ -10,13 +10,19 @@ public class AnalyticsCounter {
 	private static int pupilCount = 0;		// initialize to 0
 	
 	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
-
+		
+		//JLP
+		ISymptomReader symptoms = new ReadSymptomDataFromFile("Project02Eclipse/symptomsvide.txt");
+		List<String> listesymptom = symptoms.GetSymptoms();
+		
 		int i = 0;	// set i to 0
-		while (line != null) {
-			i++;	// increment i
+		
+		String line ;
+				
+		
+		while (i < listesymptom.size()) {
+		
+			line = listesymptom.get(i);
 			System.out.println("symptom from file: " + line);
 			if (line.equals("headache")) {
 				headacheCount++;
@@ -29,7 +35,7 @@ public class AnalyticsCounter {
 				pupilCount++;
 			}
 
-			line = reader.readLine();	// get another symptom
+			i++;
 		}
 		
 		// next generate output
