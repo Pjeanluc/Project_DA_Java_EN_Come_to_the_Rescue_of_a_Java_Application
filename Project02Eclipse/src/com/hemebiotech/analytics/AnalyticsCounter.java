@@ -10,15 +10,16 @@ public class AnalyticsCounter {
 			
 	public static void main(String args[]) throws Exception {
 		
+		System.out.println(args[0]);
 			
 		//Read entry file
-		ISymptomReader symptoms = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		ISymptomReader symptoms = new SymptomDataFromFileReader(args[0]);
 		
 		//Count symptoms
-		ISymptomsCount listesCount = new CountSymptomFromList(symptoms.getSymptoms());
+		ISymptomsCounter listesCount = new SymptomCounter(symptoms.getSymptoms());
 		
 		//Write the list of symptoms with count
-		IWriteCountSymptoms writeSymptoms = new PrintListSymptoms(listesCount.GetMap(), "Project02Eclipse/result2.out");
+		ISymptomsWriter writeSymptoms = new ListSymptomsPrinter(listesCount.GetMap(), args[1]);
 		writeSymptoms.writeResult ();
 		
 	}
