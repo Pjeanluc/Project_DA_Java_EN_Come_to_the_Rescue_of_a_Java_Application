@@ -2,7 +2,7 @@ package com.hemebiotech.analytics;
 
 import java.util.Map;
 
-public interface ISymptomsCount {
+public interface ISymptomsCounter {
 	
 	/**
 	 * @return a list of all Symptoms with counting for each symptoms

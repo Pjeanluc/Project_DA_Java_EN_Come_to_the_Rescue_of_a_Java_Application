@@ -5,7 +5,7 @@ package com.hemebiotech.analytics;
  * 
  * @author JL Protois
  */
-public interface IWriteCountSymptoms {
+public interface ISymptomsWriter {
 	
 	void writeResult ();
 }

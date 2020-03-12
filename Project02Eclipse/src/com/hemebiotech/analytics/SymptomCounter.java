@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * @author jl Protois
  *
  */
-public class CountSymptomFromList implements ISymptomsCount {
+public class SymptomCounter implements ISymptomsCounter {
 
 	private List<String> symptomsList;
 
@@ -18,7 +18,7 @@ public class CountSymptomFromList implements ISymptomsCount {
 	 * @param symptomsList List of symptoms
 	 */
 	
-	public CountSymptomFromList (List<String> symptomsList) {
+	public SymptomCounter (List<String> symptomsList) {
 		this.symptomsList = symptomsList;
 	}
 	  

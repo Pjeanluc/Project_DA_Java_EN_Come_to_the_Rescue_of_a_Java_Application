@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author JL Protois
  */
 
-public class PrintListSymptoms implements IWriteCountSymptoms {
+public class ListSymptomsWriter implements ISymptomsWriter {
 
 	private Map<String, Long> listCountingSymptoms;
 	private String filePath; 
@@ -25,7 +25,7 @@ public class PrintListSymptoms implements IWriteCountSymptoms {
 	 * @author JL Protois
 	 */
 	
-	public  PrintListSymptoms (Map<String, Long> listCountingSymptoms, String filePath) {
+	public  ListSymptomsWriter (Map<String, Long> listCountingSymptoms, String filePath) {
 		this.listCountingSymptoms = listCountingSymptoms;
 		this.filePath = filePath;
 	}
