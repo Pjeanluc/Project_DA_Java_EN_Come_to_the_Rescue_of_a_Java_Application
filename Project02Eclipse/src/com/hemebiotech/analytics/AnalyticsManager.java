@@ -11,8 +11,8 @@ public class AnalyticsManager {
 	public static void main(String args[]) throws Exception {
 		
 		// preparation gestionnaire d analyse de fichiers
-		AnalyticsCounter analyticsManager = new AnalyticsCounter() ;
-		analyticsManager.process(args[0], args[1]);
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter() ;
+		analyticsCounter.process(args[0], args[1]);
 						
 	}
 		

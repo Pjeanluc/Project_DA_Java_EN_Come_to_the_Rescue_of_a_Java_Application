@@ -22,7 +22,7 @@ public class ListSymptomsWriter implements ISymptomsWriter {
 	
 	
 	@Override
-	public void writeResult (Map<String, Long> listCountingSymptoms, String filePath) {
+	public Boolean writeResult (Map<String, Long> listCountingSymptoms, String filePath) {
 						
 		try {
 			
@@ -34,9 +34,11 @@ public class ListSymptomsWriter implements ISymptomsWriter {
 			}  
 	  
 	        writer.close();
+	        return true;
 		
 		} catch (IOException e) {
-			e.printStackTrace();	
+			e.printStackTrace();
+			return false;
 		}
 		
 				

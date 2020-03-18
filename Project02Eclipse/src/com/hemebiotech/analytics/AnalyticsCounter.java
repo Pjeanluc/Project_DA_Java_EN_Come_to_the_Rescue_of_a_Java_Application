@@ -11,6 +11,8 @@ import com.hemebiotech.analytics.reader.SymptomDataFromFileReader;
 import com.hemebiotech.analytics.writer.ISymptomsWriter;
 import com.hemebiotech.analytics.writer.ListSymptomsWriter;
 
+import io.vavr.control.Either;;
+
 /**
  * 
  * @author JL. Protois
@@ -20,32 +22,47 @@ public class AnalyticsCounter {
 
 	/**
 	 * 
-	 * @param inputFilePath FIle with the list of symptoms
+	 * @param inputFilePath  FIle with the list of symptoms
 	 * @param outPutFilePath File to print the list of each symptoms with a counter
 	 */
 	public void process(String inputFilePath, String outPutFilePath) {
 
-		List<String> symptomsFromFile;
+		Either<Boolean, List<String>> symptomsFromFile;
 		Map<String, Long> symptomsListwithcount;
+
+		boolean result = false;
 
 		// lecture fichier
 		symptomsFromFile = readFile(inputFilePath);
 
-		// comptage
-		symptomsListwithcount = countSymptoms(symptomsFromFile);
+		if (symptomsFromFile.isRight()){
 
-		// Sortie analyse
-		printSympomsList(symptomsListwithcount, outPutFilePath);
+			// comptage
+			symptomsListwithcount = countSymptoms(symptomsFromFile.get());
 
+			// Sortie analyse
+			result = printSympomsList(symptomsListwithcount, outPutFilePath);
+			
+		} else {
+			System.out.println("problem with the file " + inputFilePath);
+			result = true;
+
+		}
 		
+		if (result) {
+			System.out.println("Correct treatment for file " + outPutFilePath);
+		} else {
+			System.out.println("Error of treatment for File " + outPutFilePath);
+		}
+
 	}
 
 	/**
 	 * 
-	 * @param inputFilePath file 
-	 * @return list of symptoms (string) 
+	 * @param inputFilePath file
+	 * @return list of symptoms (string)
 	 */
-	public List<String> readFile(String inputFilePath) {
+	public Either<Boolean, List<String>> readFile(String inputFilePath) {
 
 		ISymptomReader symptoms = new SymptomDataFromFileReader();
 		return symptoms.getSymptoms(inputFilePath);
@@ -55,7 +72,7 @@ public class AnalyticsCounter {
 	/**
 	 * 
 	 * @param listOfSymptoms
-	 * @return MAP, with the number of each symptoms 
+	 * @return MAP, with the number of each symptoms
 	 */
 	public Map<String, Long> countSymptoms(List<String> listOfSymptoms) {
 
@@ -67,12 +84,12 @@ public class AnalyticsCounter {
 	/**
 	 * 
 	 * @param symptomsListwithCount MAP of each symptoms with the counter
-	 * @param outputFilePath the file where print the result
+	 * @param outputFilePath        the file where print the result
 	 */
-	public void printSympomsList(Map<String, Long> symptomsListwithCount, String outputFilePath) {
+	public Boolean printSympomsList(Map<String, Long> symptomsListwithCount, String outputFilePath) {
 
 		ISymptomsWriter writeSymptoms = new ListSymptomsWriter();
-		writeSymptoms.writeResult(symptomsListwithCount, outputFilePath);
+		return writeSymptoms.writeResult(symptomsListwithCount, outputFilePath);
 	}
 
 }

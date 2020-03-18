@@ -9,5 +9,5 @@ import java.util.Map;
  */
 public interface ISymptomsWriter {
 	
-	void writeResult (Map<String, Long> listCountingSymptoms, String filePath);
+	Boolean writeResult (Map<String, Long> listCountingSymptoms, String filePath);
 }

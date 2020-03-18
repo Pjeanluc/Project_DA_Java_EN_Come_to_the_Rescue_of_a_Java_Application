@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import io.vavr.control.Either;
 
 /**
  * Simple brute force implementation
@@ -17,7 +18,7 @@ public class SymptomDataFromFileReader implements ISymptomReader {
 	
 	
 	@Override
-	public List<String> getSymptoms(String filepath) {
+	public Either<Boolean, List<String>> getSymptoms(String filepath) {
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if (filepath != null) {
@@ -30,12 +31,14 @@ public class SymptomDataFromFileReader implements ISymptomReader {
 					line = reader.readLine();
 				}
 				reader.close();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
+				return Either.left(false);
 			}
 		}
 		
-		return result;
+		return Either.right(result);
 	}
 
 }
