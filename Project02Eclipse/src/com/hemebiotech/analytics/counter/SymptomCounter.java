@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.counter;
 
 import java.util.Map;
 import java.util.List;
@@ -11,20 +11,10 @@ import java.util.TreeMap;
  */
 public class SymptomCounter implements ISymptomsCounter {
 
-	private List<String> symptomsList;
-
-	/**
-	 * 
-	 * @param symptomsList List of symptoms
-	 */
-	
-	public SymptomCounter (List<String> symptomsList) {
-		this.symptomsList = symptomsList;
-	}
-	  
+		  
 	@Override
 	
-	 public Map<String, Long> GetMap(){
+	 public Map<String, Long> getSymptomsCounter(List<String> symptomsList){
 		
 		Map<String, Long> myMap = new TreeMap<String, Long>();
 

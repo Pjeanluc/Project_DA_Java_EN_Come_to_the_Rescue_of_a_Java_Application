@@ -1,10 +1,11 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import io.vavr.control.Either;
 
 /**
  * Simple brute force implementation
@@ -14,16 +15,10 @@ public class SymptomDataFromFileReader implements ISymptomReader {
 
 	private String filepath;
 	
-	/**
-	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
-	 */
-	public SymptomDataFromFileReader (String filepath) {
-		this.filepath = filepath;
-	}
+	
 	
 	@Override
-	public List<String> getSymptoms() {
+	public Either<Boolean, List<String>> getSymptoms(String filepath) {
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if (filepath != null) {
@@ -36,12 +31,14 @@ public class SymptomDataFromFileReader implements ISymptomReader {
 					line = reader.readLine();
 				}
 				reader.close();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
+				return Either.left(false);
 			}
 		}
 		
-		return result;
+		return Either.right(result);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.writer;
 
 import java.util.Map;
 import java.io.FileWriter;
@@ -13,32 +13,16 @@ import java.io.IOException;
 
 public class ListSymptomsWriter implements ISymptomsWriter {
 
-	private Map<String, Long> listCountingSymptoms;
-	private String filePath; 
-
-	/**
-	 * Constructor
-	 * 
-	 * @param listCountingSymptoms map with symptom and count
-	 * @param filePath name of the output
-	 *
-	 * @author JL Protois
-	 */
 	
-	public  ListSymptomsWriter (Map<String, Long> listCountingSymptoms, String filePath) {
-		this.listCountingSymptoms = listCountingSymptoms;
-		this.filePath = filePath;
-	}
-
-		
 	/**
 	 * Print symptoms and count in a file
 	 * 
 	 * @author JL Protois
 	 */
 	
+	
 	@Override
-	public void writeResult () {
+	public Boolean writeResult (Map<String, Long> listCountingSymptoms, String filePath) {
 						
 		try {
 			
@@ -50,9 +34,11 @@ public class ListSymptomsWriter implements ISymptomsWriter {
 			}  
 	  
 	        writer.close();
+	        return true;
 		
 		} catch (IOException e) {
-			e.printStackTrace();	
+			e.printStackTrace();
+			return false;
 		}
 		
 				
