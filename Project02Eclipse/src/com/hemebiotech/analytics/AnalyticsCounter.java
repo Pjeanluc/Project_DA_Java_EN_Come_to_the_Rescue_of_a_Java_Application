@@ -1,13 +1,17 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import com.hemebiotech.analytics.counter.ISymptomsCounter;
 import com.hemebiotech.analytics.counter.SymptomCounter;
-import com.hemebiotech.analytics.reader.ISymptomReader;
-import com.hemebiotech.analytics.reader.SymptomDataFromFileReader;
+import com.hemebiotech.analytics.exceptions.PersonalExceptions;
+import com.hemebiotech.analytics.fileFactory.FileFactory;
+import com.hemebiotech.analytics.fileFactory.reader.ISymptomReaderGeneric;
+import com.hemebiotech.analytics.fileFactory.reader.SymptomFileReaderGeneric;
 import com.hemebiotech.analytics.writer.ISymptomsWriter;
 import com.hemebiotech.analytics.writer.ListSymptomsWriter;
 
@@ -35,24 +39,24 @@ public class AnalyticsCounter {
 		// lecture fichier
 		symptomsFromFile = readFile(inputFilePath);
 
-		if (symptomsFromFile.isRight()){
+		if (symptomsFromFile.isRight()) {
 
 			// comptage
 			symptomsListwithcount = countSymptoms(symptomsFromFile.get());
 
 			// Sortie analyse
 			result = printSympomsList(symptomsListwithcount, outPutFilePath);
-			
+
+			if (result) {
+				System.out.println("Correct treatment for file " + outPutFilePath);
+			} else {
+				System.out.println("Error of treatment for File " + outPutFilePath);
+			}
+
 		} else {
 			System.out.println("problem with the file " + inputFilePath);
 			result = true;
 
-		}
-		
-		if (result) {
-			System.out.println("Correct treatment for file " + outPutFilePath);
-		} else {
-			System.out.println("Error of treatment for File " + outPutFilePath);
 		}
 
 	}
@@ -64,9 +68,29 @@ public class AnalyticsCounter {
 	 */
 	public Either<Boolean, List<String>> readFile(String inputFilePath) {
 
-		ISymptomReader symptoms = new SymptomDataFromFileReader();
-		return symptoms.getSymptoms(inputFilePath);
+		List<String> result = new ArrayList<String>();
 
+		// get all symptoms in the input file
+		FileFactory myFileFactory = new FileFactory();
+
+		try {
+			ISymptomReaderGeneric readerFile = myFileFactory.getReader(inputFilePath);
+
+			if (readerFile != null) {
+
+				try {
+					result = readerFile.getSymptoms(inputFilePath);
+
+				} catch (IOException e) {
+					return Either.left(false);
+				}
+			}
+
+		} catch (PersonalExceptions e) {
+			return Either.left(false);
+		}
+
+		return Either.right(result);
 	}
 
 	/**
