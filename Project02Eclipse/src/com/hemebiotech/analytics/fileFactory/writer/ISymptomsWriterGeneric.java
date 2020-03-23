@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics.writer;
+package com.hemebiotech.analytics.fileFactory.writer;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import java.util.Map;
  * 
  * @author JL Protois
  */
-public interface ISymptomsWriter {
+public interface ISymptomsWriterGeneric {
 	
 	Boolean writeResult (Map<String, Long> listCountingSymptoms, String filePath);
 }
