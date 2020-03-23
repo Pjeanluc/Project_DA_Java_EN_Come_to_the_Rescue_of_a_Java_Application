@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics.writer;
+package com.hemebiotech.analytics.fileFactory.writer;
 
 import java.util.Map;
 import java.io.FileWriter;
@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author JL Protois
  */
 
-public class ListSymptomsWriter implements ISymptomsWriter {
+public class ListSymptomsWriterOut extends ListSymptomsWritergeneric implements ISymptomsWriterGeneric {
 
 	
 	/**
@@ -41,7 +41,6 @@ public class ListSymptomsWriter implements ISymptomsWriter {
 			return false;
 		}
 		
-				
 	}
 }
 

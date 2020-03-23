@@ -4,17 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import com.hemebiotech.analytics.counter.ISymptomsCounter;
 import com.hemebiotech.analytics.counter.SymptomCounter;
 import com.hemebiotech.analytics.exceptions.PersonalExceptions;
 import com.hemebiotech.analytics.fileFactory.FileFactory;
 import com.hemebiotech.analytics.fileFactory.reader.ISymptomReaderGeneric;
-import com.hemebiotech.analytics.fileFactory.reader.SymptomFileReaderGeneric;
-import com.hemebiotech.analytics.writer.ISymptomsWriter;
-import com.hemebiotech.analytics.writer.ListSymptomsWriter;
-
+import com.hemebiotech.analytics.fileFactory.writer.ISymptomsWriterGeneric;
 import io.vavr.control.Either;;
 
 /**
@@ -112,8 +108,11 @@ public class AnalyticsCounter {
 	 */
 	public Boolean printSympomsList(Map<String, Long> symptomsListwithCount, String outputFilePath) {
 
-		ISymptomsWriter writeSymptoms = new ListSymptomsWriter();
+		FileFactory myFileFactory = new FileFactory();
+		
+		ISymptomsWriterGeneric writeSymptoms = myFileFactory.getWriter(outputFilePath);
+		
 		return writeSymptoms.writeResult(symptomsListwithCount, outputFilePath);
+	
 	}
-
 }
