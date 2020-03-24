@@ -6,12 +6,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Simple brute force implementation
+ * 
+ * @author S053261
  *
  */
 public abstract class SymptomFileReaderGeneric implements ISymptomReaderGeneric {
 
+	/**
+	 * 
+	 * @param filepath input file
+	 * @return lines from the file 
+	 * @throws IOException
+	 */
 	public List<String> getLines(String filepath) throws IOException {
 		ArrayList<String> result = new ArrayList<String>();
 		

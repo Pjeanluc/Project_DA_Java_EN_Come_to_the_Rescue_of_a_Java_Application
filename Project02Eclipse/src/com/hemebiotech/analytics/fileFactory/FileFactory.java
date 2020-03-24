@@ -5,10 +5,16 @@ import com.hemebiotech.analytics.fileFactory.reader.SymptomFileReaderGeneric;
 import com.hemebiotech.analytics.fileFactory.reader.SymptomsFileReaderTxt;
 import com.hemebiotech.analytics.fileFactory.writer.ListSymptomsWriterConsole;
 import com.hemebiotech.analytics.fileFactory.writer.ListSymptomsWriterOut;
-import com.hemebiotech.analytics.fileFactory.writer.ListSymptomsWritergeneric;
+import com.hemebiotech.analytics.fileFactory.writer.ListSymptomsWriterGeneric;
 
 public class FileFactory {
 	
+	/**
+	 * 
+	 * @param filepath
+	 * @return instance of the Reader
+	 * @throws PersonalExceptions
+	 */
 	public SymptomFileReaderGeneric getReader(String filepath) throws PersonalExceptions {
 		
 		SymptomFileReaderGeneric fileReader = null;
@@ -26,11 +32,16 @@ public class FileFactory {
 				
 	}
 
-	public ListSymptomsWritergeneric getWriter(String filepath) {
+	/**
+	 * 
+	 * @param filepath
+	 * @return Writer
+	 */
+	public ListSymptomsWriterGeneric getWriter(String filepath) {
 					
 		String extentionFile = "";
 		
-		ListSymptomsWritergeneric fileWriter = null;
+		ListSymptomsWriterGeneric fileWriter = null;
 
 		extentionFile = filepath.substring(filepath.length() - 4); // extention file detection
 		if (extentionFile.equals(".out")) {

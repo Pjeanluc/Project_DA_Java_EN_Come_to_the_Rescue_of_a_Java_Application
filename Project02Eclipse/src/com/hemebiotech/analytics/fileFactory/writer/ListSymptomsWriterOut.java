@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author JL Protois
  */
 
-public class ListSymptomsWriterOut extends ListSymptomsWritergeneric implements ISymptomsWriterGeneric {
+public class ListSymptomsWriterOut extends ListSymptomsWriterGeneric {
 
 	
 	/**

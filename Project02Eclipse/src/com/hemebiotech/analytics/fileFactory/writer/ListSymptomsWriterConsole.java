@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 
-public class ListSymptomsWriterConsole extends ListSymptomsWritergeneric implements ISymptomsWriterGeneric {
+public class ListSymptomsWriterConsole extends ListSymptomsWriterGeneric {
 	
 	
 	

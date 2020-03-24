@@ -9,5 +9,11 @@ import java.util.Map;
  */
 public interface ISymptomsWriterGeneric {
 	
+	/**
+	 * 
+	 * @param listCountingSymptoms
+	 * @param filePath
+	 * @return Boolean (true if ok)
+	 */
 	Boolean writeResult (Map<String, Long> listCountingSymptoms, String filePath);
 }

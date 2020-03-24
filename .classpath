@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Project02Eclipse/src"/>
 	<classpathentry kind="lib" path="C:/outils/Java/io.vavr1.0.0/vavr-1.0.0-alpha-3.jar"/>
+	<classpathentry kind="lib" path="C:/outils/Log4j/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
