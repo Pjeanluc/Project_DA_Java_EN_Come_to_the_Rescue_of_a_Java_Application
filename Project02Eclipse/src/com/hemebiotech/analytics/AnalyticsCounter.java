@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.hemebiotech.analytics.counter.ISymptomsCounter;
 import com.hemebiotech.analytics.counter.SymptomCounter;
@@ -48,14 +48,14 @@ public class AnalyticsCounter {
 			result = printSympomsList(symptomsListwithcount, outPutFilePath);
 
 			if (result) {
-				logger.info("Correct treatment for file ");
+				logger.info("Correct treatment for file " + outPutFilePath.toString());
 			} else {
 
-				logger.error("Error of treatment for File ");
+				logger.error("Error of treatment for File " + outPutFilePath.toString());
 			}
 
 		} else {
-			logger.error("problem with the file ");
+			logger.error("problem with the file " + inputFilePath.toString());
 			result = true;
 
 		}
